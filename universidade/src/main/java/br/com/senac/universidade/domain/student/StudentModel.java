@@ -1,16 +1,15 @@
-package br.com.senac.universidade.domain.professor;
+package br.com.senac.universidade.domain.student;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import br.com.senac.universidade.domain.classes.ClassModel;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Entity(name = "professors")
-public class ProfessorModel {
+@Entity(name="students")
+public class StudentModel {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -18,5 +17,5 @@ public class ProfessorModel {
     private String registration;
     private String name;
     private LocalDateTime bornDate;
-
 }
+

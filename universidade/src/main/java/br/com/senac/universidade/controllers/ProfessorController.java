@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/professores")
+@RequestMapping("/professors")
 public class ProfessorController {
 
     @Autowired
     private IProfessorRepository professorRepository;
 
     @GetMapping("")
-    public List<ProfessorModel> listarTodosProfessores() {
+    public List<ProfessorModel> findAllProfessors() {
         return this.professorRepository.findAll();
     }
 
-    @GetMapping("/{matricula}")
-    public ProfessorModel buscarProfessorPelaMatricula(@PathVariable String matricula) {
-        return this.professorRepository.findByMatricula(matricula);
+    @GetMapping("/{registration}")
+    public ProfessorModel findProfessorByRegistration(@PathVariable String registration) {
+        return this.professorRepository.findByRegistration(registration);
     }
 
     @PostMapping("")
-    public ResponseEntity cadastrarProfessor(@RequestBody ProfessorModel professorModel) {
-        var buscaPelaMatricula = this.professorRepository.findByMatricula(professorModel.getMatricula());
-        if(buscaPelaMatricula != null) {
+    public ResponseEntity registerProfessor(@RequestBody ProfessorModel professorModel) {
+        var findByRegistration = this.professorRepository.findByRegistration(professorModel.getRegistration());
+        if(findByRegistration != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Já existe um professor com esta matrícula");
         }
-        var novoProfessor = this.professorRepository.save(professorModel);
-        return ResponseEntity.ok().body(novoProfessor);
+        var newProfessor = this.professorRepository.save(professorModel);
+        return ResponseEntity.ok().body(newProfessor);
     }
 
 }

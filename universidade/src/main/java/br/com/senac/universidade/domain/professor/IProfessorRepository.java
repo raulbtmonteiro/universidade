@@ -6,5 +6,5 @@ import java.util.UUID;
 
 public interface IProfessorRepository extends JpaRepository<ProfessorModel, UUID> {
 
-    ProfessorModel findByMatricula(String matricula);
+    ProfessorModel findByRegistration(String registration);
 }
